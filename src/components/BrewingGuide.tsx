@@ -4,7 +4,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { Clock, Thermometer, Scale, Coffee } from 'lucide-react';
+import { Clock, Thermometer, Scale, Coffee,  Play, Square, RotateCcw } from 'lucide-react';
+import { Button } from './ui/button';
+
 
 const BrewingGuide: React.FC = () => {
   const { t } = useLanguage();
@@ -206,24 +208,27 @@ const BrewingGuide: React.FC = () => {
 
                     {/* Visual brewing timer mockup */}
                     <div className="mt-8 p-4 bg-coffee-50 rounded-lg">
-                      <h5 className="font-semibold text-coffee-900 mb-3">Brewing Timer</h5>
-                      <div className="flex items-center justify-between p-3 bg-white rounded border">
-                        <div className="text-2xl font-mono font-bold text-coffee-900">
-                          00:00
-                        </div>
-                        <div className="flex space-x-2">
-                          <div className="w-8 h-8 bg-coffee-600 rounded-full flex items-center justify-center">
-                            <div className="w-0 h-0 border-l-2 border-l-white border-y-2 border-y-transparent ml-0.5"></div>
-                          </div>
-                          <div className="w-8 h-8 bg-coffee-200 rounded-full flex items-center justify-center">
-                            <div className="w-3 h-3 bg-coffee-600 rounded-sm"></div>
-                          </div>
-                        </div>
+                    <h5 className="font-semibold text-coffee-900 mb-3">Brewing Timer</h5>
+                    <div className="flex items-center justify-between p-3 bg-white rounded border">
+                      <div className="text-2xl font-mono font-bold text-coffee-900">
+                        03:00
                       </div>
-                      <p className="text-xs text-coffee-600 mt-2 text-center">
-                        Visual timer component (demo only)
-                      </p>
+                      <div className="flex space-x-2">
+                        <Button variant="ghost" size="icon" className="text-coffee-600 hover:bg-coffee-100 hover:text-coffee-800">
+                          <Play className="h-5 w-5" />
+                        </Button>
+                        <Button variant="ghost" size="icon" className="text-coffee-600 hover:bg-coffee-100 hover:text-coffee-800">
+                          <Square className="h-5 w-5" />
+                        </Button>
+                        <Button variant="ghost" size="icon" className="text-coffee-400 hover:bg-coffee-100 hover:text-coffee-600">
+                          <RotateCcw className="h-5 w-5" />
+                        </Button>
+                      </div>
                     </div>
+                    <p className="text-xs text-coffee-600 mt-2 text-center">
+                      Visual timer component (demo only)
+                    </p>
+                  </div>
                   </CardContent>
                 </Card>
               </div>
