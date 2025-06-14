@@ -1,13 +1,50 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from 'react';
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import { CartProvider } from '@/contexts/CartContext';
+import Header from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
+import ProductsSection from '@/components/ProductsSection';
+import BrewingGuide from '@/components/BrewingGuide';
+import Newsletter from '@/components/Newsletter';
+import Footer from '@/components/Footer';
+import AuthModal from '@/components/AuthModal';
+import CartModal from '@/components/CartModal';
 
 const Index = () => {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <LanguageProvider>
+      <CartProvider>
+        <div className="min-h-screen bg-white">
+          <Header 
+            onAuthClick={() => setIsAuthModalOpen(true)}
+            onCartClick={() => setIsCartModalOpen(true)}
+          />
+          
+          <main>
+            <HeroSection />
+            <ProductsSection />
+            <BrewingGuide />
+            <Newsletter />
+          </main>
+          
+          <Footer />
+          
+          <AuthModal
+            isOpen={isAuthModalOpen}
+            onClose={() => setIsAuthModalOpen(false)}
+          />
+          
+          <CartModal
+            isOpen={isCartModalOpen}
+            onClose={() => setIsCartModalOpen(false)}
+          />
+        </div>
+      </CartProvider>
+    </LanguageProvider>
   );
 };
 
