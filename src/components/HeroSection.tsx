@@ -17,7 +17,7 @@ const HeroSection: React.FC = () => {
   return <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-coffee-50 via-cream-50 to-coffee-100">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img alt="Premium coffee beans" src="/lovable-uploads/2fc8b77b-692c-4535-b45a-309b30d4c060.png" className="w-full h-full object-cover" />
+        <img alt="Premium coffee beans" src="/img/hero_section_img.png" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
