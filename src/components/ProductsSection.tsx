@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -7,29 +6,39 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import ProductCard, { Product } from './ProductCard';
 import { Search, Filter } from 'lucide-react';
 
+// 1. IMPORTA TODAS TUS IMÁGENES AQUÍ
+import productImage1 from '/img/1.png';
+import productImage2 from '/img/2.png';
+import productImage3 from '/img/3.png';
+import productImage4 from '/img/4.png';
+import productImage5 from '/img/5.png';
+import productImage6 from '/img/6.png';
+
+
 const ProductsSection: React.FC = () => {
   const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('name');
   const [filterBy, setFilterBy] = useState('all');
 
+  // 2. USA LAS VARIABLES IMPORTADAS EN LA LISTA
   const products: Product[] = [
     {
       id: '1',
       name: 'Ethiopian Yirgacheffe',
       price: 24.99,
-      image: '/img/1.png',
+      image: productImage1, // <- CAMBIADO
       origin: 'Ethiopia',
       roast: 'Light',
       notes: ['Floral', 'Citrus', 'Tea-like'],
       description: 'A bright and complex coffee with wine-like acidity and floral aromatics.',
       rating: 4.8
     },
-    
-    {  id: '2',
+    {
+      id: '2',
       name: 'Colombian Supremo',
       price: 19.99,
-      image: '/img/2.png',
+      image: productImage2, // <- CAMBIADO
       origin: 'Colombia',
       roast: 'Medium',
       notes: ['Chocolate', 'Caramel', 'Nutty'],
@@ -40,7 +49,7 @@ const ProductsSection: React.FC = () => {
       id: '3',
       name: 'Brazilian Santos',
       price: 17.99,
-      image: '/img/3.png',
+      image: productImage3, // <- CAMBIADO
       origin: 'Brazil',
       roast: 'Dark',
       notes: ['Bold', 'Smoky', 'Low Acid'],
@@ -51,7 +60,7 @@ const ProductsSection: React.FC = () => {
       id: '4',
       name: 'Guatemala Antigua',
       price: 22.99,
-      image: '/img/4.png',
+      image: productImage4, // <- CAMBIADO
       origin: 'Guatemala',
       roast: 'Medium',
       notes: ['Spicy', 'Smoky', 'Full Body'],
@@ -62,7 +71,7 @@ const ProductsSection: React.FC = () => {
       id: '5',
       name: 'Costa Rican Tarrazú',
       price: 26.99,
-      image: '/img/5.png',
+      image: productImage5, // <- CAMBIADO
       origin: 'Costa Rica',
       roast: 'Light',
       notes: ['Bright', 'Fruity', 'Clean'],
@@ -73,7 +82,7 @@ const ProductsSection: React.FC = () => {
       id: '6',
       name: 'Jamaican Blue Mountain',
       price: 49.99,
-      image: '/img/6.png',
+      image: productImage6, // <- CAMBIADO
       origin: 'Jamaica',
       roast: 'Medium',
       notes: ['Mild', 'Sweet', 'Balanced'],
@@ -86,8 +95,8 @@ const ProductsSection: React.FC = () => {
     .filter(product => {
       if (searchTerm) {
         return product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-               product.origin.toLowerCase().includes(searchTerm.toLowerCase()) ||
-               product.notes.some(note => note.toLowerCase().includes(searchTerm.toLowerCase()));
+          product.origin.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          product.notes.some(note => note.toLowerCase().includes(searchTerm.toLowerCase()));
       }
       return true;
     })
@@ -131,7 +140,7 @@ const ProductsSection: React.FC = () => {
               className="pl-10 border-coffee-200 focus:border-coffee-500"
             />
           </div>
-          
+
           <Select value={filterBy} onValueChange={setFilterBy}>
             <SelectTrigger className="w-full md:w-48 border-coffee-200">
               <Filter className="h-4 w-4 mr-2" />
@@ -144,7 +153,7 @@ const ProductsSection: React.FC = () => {
               <SelectItem value="dark">Dark Roast</SelectItem>
             </SelectContent>
           </Select>
-          
+
           <Select value={sortBy} onValueChange={setSortBy}>
             <SelectTrigger className="w-full md:w-48 border-coffee-200">
               <SelectValue placeholder="Sort by" />
