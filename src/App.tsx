@@ -13,7 +13,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      {/* V-- LA ÚNICA LÍNEA QUE CAMBIA ES ESTA --V */}
+      <BrowserRouter basename="/aroma-artisan-commerce-demo">
         <Routes>
           <Route path="/" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
