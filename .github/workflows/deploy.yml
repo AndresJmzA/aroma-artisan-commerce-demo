@@ -1,0 +1,66 @@
+# Nombre del workflow que verás en la pestaña "Actions"
+name: Desplegar Página de React con Vite en GitHub Pages
+
+# Define cuándo se debe ejecutar este workflow
+on:
+  # Se ejecuta cada vez que haces un 'push' a la rama 'main'
+  push:
+    branches: ['main']
+
+  # Permite ejecutar este workflow manualmente desde la pestaña Actions
+  workflow_dispatch:
+
+# Configura los permisos para que GitHub Actions pueda desplegar en GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite solo un despliegue concurrente, cancelando los anteriores si se hace un nuevo push
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  # Tarea de despliegue
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Clona tu repositorio en el runner de GitHub
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Configura Node.js para poder usar npm
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Usamos una versión moderna y estable de Node.js
+          cache: 'npm'   # Habilita el cache para que 'npm install' sea más rápido en futuras ejecuciones
+
+      # 3. Instala las dependencias del proyecto
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Compila el proyecto. Este es el comando que tú proporcionaste.
+      - name: Build
+        run: npm run build
+
+      # 5. Configura GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 6. Sube los artefactos de la compilación (el contenido de la carpeta 'dist')
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Aquí se especifica la carpeta que se va a subir.
+          # ¡Cámbiala si descubriste que tu carpeta se llama diferente!
+          path: './dist'
+
+      # 7. Despliega los archivos en GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
