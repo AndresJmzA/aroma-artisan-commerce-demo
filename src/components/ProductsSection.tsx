@@ -3,7 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import ProductCard, { Product } from './ProductCard';
+import type { Product } from '@/types';
 import { Search, Filter } from 'lucide-react';
 
 // 1. IMPORTA TODAS TUS IMÁGENES AQUÍ
@@ -13,6 +13,7 @@ import productImage3 from '/img/3.png';
 import productImage4 from '/img/4.png';
 import productImage5 from '/img/5.png';
 import productImage6 from '/img/6.png';
+import ProductCard from './ProductCard';
 
 
 const ProductsSection: React.FC = () => {

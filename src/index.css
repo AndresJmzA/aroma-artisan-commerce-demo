@@ -101,3 +101,19 @@
     @apply bg-background text-foreground;
   }
 }
+/* --- INICIO CÓDIGO PARA ANIMACIÓN ON-SCROLL --- */
+
+/* Este es el estado inicial del elemento, antes de ser visible */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Esta clase se añadirá con JavaScript cuando el elemento aparezca en pantalla */
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- FIN CÓDIGO PARA ANIMACIÓN ON-SCROLL --- */

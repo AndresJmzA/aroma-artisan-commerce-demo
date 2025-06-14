@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { useInView } from 'react-intersection-observer'; // 1. Importa el hook para la animación
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
@@ -8,17 +8,8 @@ import { Badge } from '@/components/ui/badge';
 import { toast } from '@/hooks/use-toast';
 import { ShoppingCart, Heart, Star } from 'lucide-react';
 
-export interface Product {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  origin: string;
-  roast: string;
-  notes: string[];
-  description: string;
-  rating: number;
-}
+// Se importa el tipo 'Product' desde el nuevo archivo central de tipos
+import type { Product } from '@/types';
 
 interface ProductCardProps {
   product: Product;
@@ -29,6 +20,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
   const [isFavorited, setIsFavorited] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  // 2. Configura el hook para observar esta tarjeta específica
+  const { ref, inView } = useInView({
+    triggerOnce: true, // La animación solo se ejecuta una vez
+    threshold: 0.1,    // Se activa cuando el 10% de la tarjeta es visible
+  });
 
   const handleAddToCart = () => {
     addToCart({
@@ -55,10 +52,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
+    // 3. Aplica la 'ref' y las clases de animación a la Card
     <Card 
+      ref={ref}
       className={`overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${
         isHovered ? 'shadow-2xl' : 'shadow-lg'
-      }`}
+      } animate-on-scroll ${inView ? 'is-visible' : ''}`} // <-- Clases de animación añadidas
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
