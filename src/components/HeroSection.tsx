@@ -59,7 +59,7 @@ const HeroSection: React.FC = () => {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-coffee-600 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-200">
+            <Button variant="outline" size="lg" className="border-white hover:bg-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-200 text-amber-600">
               <Play className="mr-2 h-5 w-5" />
               {t('hero.learn')}
             </Button>
