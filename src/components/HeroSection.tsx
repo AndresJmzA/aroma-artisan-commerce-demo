@@ -65,11 +65,7 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Floating Coffee Bean */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-          <div className="animate-float">
-            <div className="w-8 h-8 bg-coffee-600 rounded-full opacity-50"></div>
-          </div>
-        </div>
+        
       </div>
 
       {/* Scroll Indicator */}
